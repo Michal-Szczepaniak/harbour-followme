@@ -1,14 +1,14 @@
 {
-        'label': "ManhwaFull",
-        'url': "https://manhwafull.net",
+        'label': "MangaKatana",
+        'url': "https://mangakatana.com",
         'search': {
                 'label': "Search",
-                'pathSuffix': "/manga-list.html?",
-                'pathQueryPrefix': "name",
+                'pathSuffix': "/?",
+                'pathQueryPrefix': "search",
                 'pathQuery': "=",
-                'pathQuerySuffix': "",
-                        'preFilter': '<div class="card">',
-                'filter': 'thumb_attr series-title">[^<]+<a href="([^"]+)" title="([^"]+)">',
+                'pathQuerySuffix': "&search_by=m_name",
+                        'preFilter': '<h3 class="title">',
+                'filter': '<a href="https://mangakatana.com/(manga[^"]+)" target="_blank">([^<]+)</a><span>',
                 'filterName': 2,
         'filterId': 2,
                 'filterFile': 1,
@@ -21,10 +21,10 @@
         },
         'levels': [
                 {
-                        'label': "Manga",
-                        'pathSuffix': "/manga-list.html",
-                        'preFilter': '<div class="card-body">',
-                        'filter': 'thumb_attr series-title">[^<]+<a href="([^"]+)" title="([^"]+)">',
+                        'label': "Manga Latest",
+                        'pathSuffix': "/",
+                        'preFilter': '<h3 class="title">',
+                        'filter': '<a href="https://mangakatana.com/(manga[^"]+)" target="_blank">([^<]+)</a><span>',
                         'filterName': 2,
                'filterId': 2,
                         'filterFile': 1,
@@ -37,9 +37,9 @@
 
                 {
                         'label': "Chapter",
-                        'preFilter': 'list-chapters',
-                        'filter': '<a href="(read-.*-chapter-([^\.]+)\.html)" title="([^"]+)">',
-                        'filterName': 1,
+                        'preFilter': '<tr data-jump="0">',
+                        'filter': '<td><div class="chapter"><a href="https://mangakatana.com/(manga/[^/]+/c([^"]+))">([^<]+)</a>',
+                        'filterName': 2,
         'filterId': 2,
                         'filterFile': 1,
                         'filePrefix': "/",
@@ -51,10 +51,10 @@
 
                 {
                         'label': "Page",
-                        'preFilter': 'chapter-content',
-                        'filter': "data-original='(https://[^\/]+([^']+))'",
+                        'preFilter': 'var thzq=',
+                        'filter': "(https://i1.mangakatana.com/token/[^']+)'",
                         'filterName': 2,
-        'filterId': 2,
+        'filterId': 1,
                         'filterFile': 1,
                         'filePrefix': "",
                         'fileSuffix': "",

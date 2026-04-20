@@ -163,7 +163,7 @@ onPressAndHold: showoverlay = !showoverlay
         }
 
         model: partModel
-onCurrentIndexChanged: picFlick._fit()
+//onCurrentIndexChanged: picFlick._fit()
         delegate: FollowMeImageH {
             id: followMeImage
 

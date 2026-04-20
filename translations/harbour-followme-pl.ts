@@ -93,73 +93,106 @@
 <context>
     <name>FollowMeImageH</name>
     <message>
-        <location filename="../qml/components/FollowMeImageH.qml" line="50"/>
+        <location filename="../qml/components/FollowMeImageH.qml" line="51"/>
         <source>Chapter</source>
         <translation type="unfinished">Rozdział</translation>
     </message>
 </context>
 <context>
+    <name>Localgridview</name>
+    <message>
+        <location filename="../qml/pages/Localgridview.qml" line="54"/>
+        <source>Jump To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Localgridview.qml" line="57"/>
+        <source>Jump to page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Localgridview.qml" line="59"/>
+        <source>page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Localgridview.qml" line="79"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="65"/>
+        <location filename="../qml/pages/MainPage.qml" line="66"/>
         <source>FollowMe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="90"/>
+        <location filename="../qml/pages/MainPage.qml" line="91"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="105"/>
+        <location filename="../qml/pages/MainPage.qml" line="106"/>
         <source>Stop downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="109"/>
+        <location filename="../qml/pages/MainPage.qml" line="110"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="113"/>
-        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <location filename="../qml/pages/MainPage.qml" line="114"/>
+        <location filename="../qml/pages/MainPage.qml" line="117"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="117"/>
+        <location filename="../qml/pages/MainPage.qml" line="118"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="123"/>
-        <location filename="../qml/pages/MainPage.qml" line="258"/>
+        <location filename="../qml/pages/MainPage.qml" line="124"/>
+        <source>Local cbz/cbr file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="128"/>
+        <location filename="../qml/pages/MainPage.qml" line="263"/>
         <source>Check updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="271"/>
+        <location filename="../qml/pages/MainPage.qml" line="276"/>
         <source>Download some chapters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="283"/>
+        <location filename="../qml/pages/MainPage.qml" line="288"/>
         <source>Download until chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="285"/>
+        <location filename="../qml/pages/MainPage.qml" line="290"/>
         <source>chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="305"/>
+        <location filename="../qml/pages/MainPage.qml" line="310"/>
         <source>Cleanup read chapters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="332"/>
+        <location filename="../qml/pages/MainPage.qml" line="337"/>
         <source>Stop following</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="699"/>
+        <source>Select CBZ/CBR file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

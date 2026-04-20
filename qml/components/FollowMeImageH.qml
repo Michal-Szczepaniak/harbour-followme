@@ -24,6 +24,7 @@ import Sailfish.Silica 1.0
     Image {
         id: imageFile
         source: absoluteFile
+        asynchronous: true
         fillMode: Image.PreserveAspectFit
             anchors.fill: parent
 

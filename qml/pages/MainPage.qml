@@ -1,5 +1,6 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
+import Sailfish.Pickers 1.0
 import Nemo.Configuration 1.0
 import "../components"
 import "../scripts/download.js" as Utils
@@ -120,6 +121,10 @@ function horizonref(){
                 }
             }
             MenuItem {
+                text: qsTr("Local cbz/cbr file");
+                onClicked: pageStack.push(filepicker);
+            }
+            MenuItem {
                 text: qsTr("Check updates")
                 onClicked: {
                     for (var i in entryItems) {
@@ -183,7 +188,7 @@ function horizonref(){
                 onDone: {
                     if (success) {
                    //     console.log(JSON.stringify(entryItem));
-                        if(entryItem.provider == 'MangaTown' || entryItem.provider == 'ManhwaFull' ){
+                        if(entryItem.provider == 'MangaTown' || entryItem.provider == 'MangaKatana' ){
                         entryItem.items.sort(function (a,b) {
                             if (a == undefined | b == undefined) {
                                 return 0;
@@ -687,5 +692,16 @@ function horizonref(){
         app.moveSort.connect(moveSort);
         app.removedEntry.connect(removedEntry);
         app.pluginsCompleted.connect(refreshList);
+    }
+    Component {
+        id: filepicker
+        FilePickerPage {
+            title: qsTr('Select CBZ/CBR file');
+            nameFilters: [ '*.cbz', '*.cbr' ]
+            onSelectedContentPropertiesChanged: {
+
+                pageStack.push(Qt.resolvedUrl("Localgridview.qml"), { filepath: selectedContentProperties.filePath});
+            }
+        }
     }
 }

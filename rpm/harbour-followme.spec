@@ -10,7 +10,7 @@ Name:       harbour-followme
 
 
 Summary:    Followme
-Version:    0.7.5
+Version:    0.8.0
 Release:    0
 Group:      Qt/Qt
 License:    LICENSE

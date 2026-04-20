@@ -197,7 +197,7 @@ def downloadData(base, locator, suffix, remotefile, redownload):
     except FileExistsError:
         pass
     # get the filename
-    name = fileitem['id'].replace('/','-').replace('#','').replace('?','-') + suffix
+    name = fileitem['id'].replace('/','-').replace('#','').replace('?','-').replace('%', '') + suffix
     # get the absolute filename
     absoluteFile = os.path.join(folder, name)
     if os.path.isfile(absoluteFile) and not redownload:

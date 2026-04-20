@@ -48,10 +48,8 @@ DIST_FILES += qml/harbour-followme.qml \
         qml/python/followme.py \
         qml/images/starGold.svg \
         qml/images/starGrey.svg \
-        qml/plugins/MangaReader/.FollowMe \
         qml/scripts/download.js \
         qml/plugins/MangaTown/.FollowMe \
-        qml/plugins/ManhwaFull/.FollowMe \
         harbour-followme.svg \
         rpm/harbour-followme.spec
 
@@ -70,4 +68,9 @@ TRANSLATIONS += \
 
 DISTFILES += \
     qml/components/FollowMeImageH.qml \
+    qml/pages/Localgridview.qml \
+    qml/plugins/MangaKatana/.FollowMe \
+    qml/python/imageprovider.py \
+    qml/python/parse.py \
+    qml/python/rarfile.py \
     rpm/harbour-followme.spec
