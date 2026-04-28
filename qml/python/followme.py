@@ -1,5 +1,6 @@
 import pyotherside
 import os
+import subprocess
 
 def dataPath(path):
     # expand homedir
@@ -256,26 +257,9 @@ def cleanData(base, locators, excludes):
     return nr
 
 def getFolderSize(folder):
-    total_size = 0
-    try:
-        dirlist = os.listdir(folder)
-    except:
-        dirlist = []
-        pass
-    try:
-        total_size = os.path.getsize(folder)
-    except:
-        pass
-    for item in dirlist:
-        itempath = os.path.join(folder, item)
-        if os.path.isfile(itempath):
-            try:
-                total_size += os.path.getsize(itempath)
-            except:
-                pass
-        elif os.path.isdir(itempath):
-            total_size += getFolderSize(itempath)
-    return total_size
+    comm = 'du -s "' + folder + '"'
+    return subprocess.getoutput(comm).split()[0]
+
 
 def dataSize(base, locator):
     # determine the parent folder

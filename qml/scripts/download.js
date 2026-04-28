@@ -110,10 +110,10 @@ function getAbsoluteFile(locator, remoteFile) {
  */
 function formatBytes(size) {
     size = parseInt(size);
-    size = size >> 10;
-    if (size < 2048) {
-        return '';
-    }
+    /*    size = size >> 10;
+        if (size < 2048) {
+            return '';
+        } */
     size = size >> 10;
     if (size < 2048) {
         return size + ' MB';
