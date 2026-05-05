@@ -24,7 +24,7 @@ import Sailfish.Silica 1.0
     Image {
         id: imageFile
         source: absoluteFile
-        asynchronous: true
+       // asynchronous: true
         fillMode: Image.PreserveAspectFit
             anchors.fill: parent
 
@@ -38,7 +38,7 @@ import Sailfish.Silica 1.0
             }
 
         }
-        }
+
 Label {
         id: chapterno
         visible: showoverlay && horizon
@@ -50,7 +50,7 @@ Label {
         horizontalAlignment: Text.AlignHCenter
         text: parentEntry.label + ": " + qsTr("Chapter") + " " + (chapter != undefined && chapter.label != undefined ? chapter.label + ' (' +( partIndex+1) + '/' + (partModel.length ) + ')' : ( parentEntry.items[parentEntry.currentIndex].label != undefined ? parentEntry.items[parentEntry.currentIndex].label  : parentEntry.items[parentEntry.currentIndex].id ) )
 
-    //    }
+        }
     //}
     }
 

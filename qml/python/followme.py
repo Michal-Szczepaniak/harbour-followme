@@ -76,7 +76,7 @@ def listData(base, locator, files = False, excludes = [], event = "received", de
                 if dir and not files:
                     # we're looking for directories
                     entry = loadData(base, l);
-                    entry['file'] = name;
+                    #entry['file'] = name;
                     if 'items' not in entry:
                         entry['items'] = [];
                     # send the data

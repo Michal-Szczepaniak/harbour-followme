@@ -183,12 +183,20 @@ function horizonref(){
 
                 onStarted: entryItem.items = [];
 
-                onReceived: entryItem.items.push({id: entry.id, file: entry.file, label: entry.label});
-
+                onReceived:{
+                    var re = entry.file.match(/.+\/(v\d\d\/c\d\d\d)/);
+                    if(re){
+                        entry.id = re[1]
+                        entry.label = re[1]
+                    }
+                    //  console.log(re[0], re[1])
+                     entryItem.items.unshift({id: entry.id, file: entry.file, label: entry.label});
+                //    console.log( entry.id,  entry.file,entry.label)
+                }
                 onDone: {
                     if (success) {
-                   //     console.log(JSON.stringify(entryItem));
-                        if(entryItem.provider == 'MangaTown' || entryItem.provider == 'MangaKatana' ){
+           //             console.log(JSON.stringify(entryItem));
+          /*              if(entryItem.provider == 'MangaTown' || entryItem.provider == 'MangaKatana' ){
                         entryItem.items.sort(function (a,b) {
                             if (a == undefined | b == undefined) {
                                 return 0;
@@ -201,7 +209,7 @@ function horizonref(){
                             }
                             return ( sa < sb ? -1 : (sa > sb ? 1 : 0));
                         });
-                        }
+                        }*/
                         followMeItem.total = entryItem.items.length;
                         console.log('chapters: ' + followMeItem.total);
                         saveEntry.save(entryItem);
@@ -253,7 +261,7 @@ function horizonref(){
             }
 
             onEntryUpdate: {
-                console.log("entry update for " + entryItem.label);
+                console.log("entry update for " + entryItem.label, entryItem.file);
                 console.log("entry update: entry has parts: " + entryItem.items.length);
             }
 
@@ -262,14 +270,32 @@ function horizonref(){
                     visible: (entryItem.locator[0].id in app.plugins)
                     text: qsTr("Check updates")
                     onClicked: {
-                        app.downloadQueue.append({
+                        console.log(JSON.stringify(entryItem))
+              //          console.log(entryItem.locator.file)
+                        console.log(entryItem.file, entryItem.file.indexOf('manga-'), entryItem.file.indexOf('manga/'), entryItem.items[0].file, entryItem.items[0].file.indexOf('manga-'), entryItem.items[0].file.indexOf('manga/'))
+                   var rex = entryItem.items[0].file.match(/(manga\/[^\/]+)\//);
+                        console.log(rex[1])
+                        if(entryItem.file.indexOf('manga-') < 0 && entryItem.file.indexOf('manga/') < 0 && entryItem.items[0].file.indexOf('manga/') >= 0){
+                              entryItem.file = rex[1]
+
+                        entryItem.locator[1].file = rex[1]// [{id: entryItem., file: entryItem.file, label: entryItem.label}]
+               //         var newitem = entryItem
+                        }
+                        entryItem.items = []
+                        console.log(JSON.stringify(entryItem))
+                        saveEntry.save(entryItem);
+           //                                 fetchChapters.gotopage = true;
+                    fetchChapters.activate();
+                    }
+             //           console.log(JSON.stringify(entryItem));
+        /*                app.downloadQueue.append({
                             locator: entryItem.locator,
                             entry: entryItem,
                             depth: 1,
                             sort: true,
                             signal: downloadedEntry
                         });
-                    }
+                    }*/
                 }
                 MenuItem {
                     visible: (entryItem.locator[0].id in app.plugins) && (last != '??')// || total > 0)//entryItem.items.length > 0)
@@ -636,6 +662,7 @@ function horizonref(){
     onEntryUpdate: {
         console.log('signal entryUpdate had been triggered with ' + entryIndex);
         var entryItem = entryItems[entryIndex];
+        console.log(entryItem.file)
         var lastIndex = -1;
         for (var i = 0; i < entryList.model.count; i++) {
             if (entryList.model.get(i).entryIndex == entryIndex) {

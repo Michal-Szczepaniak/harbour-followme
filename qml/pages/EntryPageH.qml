@@ -8,6 +8,7 @@ Page {
     // this is set from the MainPage, it has a locator, items
     property var parentEntry
     property bool horizon
+    property var file: parentEntry.file
     property bool showoverlay
 
     property var chapterLocator: parentEntry.locator.concat([{id: parentEntry.items[parentEntry.currentIndex].id, file: parentEntry.items[parentEntry.currentIndex].file, label: parentEntry.items[parentEntry.currentIndex].label}])
@@ -202,7 +203,7 @@ onPressAndHold: showoverlay = !showoverlay
                     saveHandler: imageSaved
                 }, function (){
                     //console.log('immediate download has been queued, clearing the imageSource', followMeImage.imageSource);
-                    //followMeImage.imageSource = '';
+                    followMeImage.imageSource = '';
                 });
             }
 
@@ -359,7 +360,7 @@ console.log(parentEntry.currentPage)
                     parentEntry.currentCompletion = parentEntry.currentPage / parentEntry.items.length;
 
                     var currentPartIndex = entryView.indexAt(entryView.contentX, 0);
-
+console.log(parentEntry.file, file, chapter.file)
                     saveEntry.activate();
                 }
             }
