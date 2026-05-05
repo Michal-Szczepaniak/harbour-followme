@@ -124,7 +124,7 @@ function horizonref(){
                 text: qsTr("Local cbz/cbr file");
                 onClicked: pageStack.push(filepicker);
             }
-            MenuItem {
+         /*   MenuItem {
                 text: qsTr("Check updates")
                 onClicked: {
                     for (var i in entryItems) {
@@ -137,7 +137,7 @@ function horizonref(){
                         });
                     }
                 }
-            }
+            }*/
         }
 
         model: ListModel {
