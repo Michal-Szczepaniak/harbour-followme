@@ -1,82 +1,81 @@
 {
-	'label': "MangaTown",
-        'url': "https://www.mangatown.com",
-	'search': {
-		'label': "Search",
-                'pathSuffix': "/search",
-		'pathQueryPrefix': "?",
-                'pathQuery': "name=",
-		'pathQuerySuffix': "",
-		'preFilter': "",
-                'filter': '<a class="manga_cover" href="/(manga/[^"]+)/" title="([^"]+)">',
-		'filterName': 2,
-		'filterFile': 1,
-		'filePrefix': "/",
-		'fileSuffix': "",
-        
-		'fileCumulative': False,
-		'filePrefixBase': True,
-		'type': "list"
-	},
-	'levels': [
-		{
-			'label': "Manga",
-			'pathSuffix': "/directory/",
-			'preFilter': '',
-                        'filter': '<a class="manga_cover" href="/(manga/[^"]+)/" title="([^"]+)">',
-			'filterName': 2,
-			'filterFile': 1,
-			'filePrefix': "/",
-			'fileSuffix': "",
-			'fileCumulative': True,
-			'filePrefixBase': True,
-			'type': "list"
-		},
-		{
-			'label': "Manga",
-			'preFilter': '<ul class="chapter_list">',
-			'filter': '<a href="(/manga/[^/]+/?v?([0-9]+)?/c([0-9\.-]+?))/" [^>]+>?',
-			'filterName': 3,
-        			'filterId': 3,
-			'filterFile': 1,
-			'filePrefix': "",
-			'fileSuffix': "",
-			'fileCumulative': False,
-			'filePrefixBase': True,
-			'type': "entry"
-		},
-		{
-			'label': "Chapter",
-			'preFilter': 'prew_page',
-			'filter': '[^]?<option value="([^"]+)"[^>]*>(\d+?)</option>',
-			'filterName': 2,
-			'filterFile': 1,
-			'filterId': 2,
-			'filePrefix': "",
-			'fileSuffix': "",
-			'fileCumulative': False,
-			'filePrefixBase': True,
-			'type': "entry"
-		},
-		{
-			'label': "Page",
-			'preFilter': '',
-			'filter': '<img src="([^"]+)" id="image" alt=',
-			'filterName': 1,
-			'filterFile': 1,
-			'filePrefix': "",
-			'fileSuffix': "",
-			'fileCumulative': False,
-			'filePrefixBase': False,
-			'type': "part"
-		},
-		{
-			'label': "Image",
-			'filePrefix': "",
-			'fileSuffix': "",
-			'fileCumulative': False,
-			'filePrefixBase': False,
-			'type': "image"
-		},
-	]
+    'label': "MangaTown",
+    'url': "https://www.mangatown.com",
+    'search': {
+        'label': "Search",
+        'pathSuffix': "/search",
+        'pathQueryPrefix': "?",
+        'pathQuery': "name=",
+        'pathQuerySuffix': "",
+        'preFilter': "",
+        'filter': '<a class="manga_cover" href="/(manga/[^"]+)/" title="([^"]+)">',
+        'filterName': 2,
+        'filterFile': 1,
+        'filePrefix': "/",
+        'fileSuffix': "",
+        'fileCumulative': False,
+        'filePrefixBase': True,
+        'type': "list"
+    },
+    'levels': [
+        {
+            'label': "Manga",
+            'pathSuffix': "/directory/",
+            'preFilter': '',
+            'filter': '<a class="manga_cover" href="/(manga/[^"]+)/" title="([^"]+)">',
+            'filterName': 2,
+            'filterFile': 1,
+            'filePrefix': "/",
+            'fileSuffix': "",
+            'fileCumulative': True,
+            'filePrefixBase': True,
+            'type': "list"
+        },
+        {
+            'label': "Manga",
+            'preFilter': '<ul class="chapter_list">',
+            'filter': '<a href="(/manga/[^/]+/?v?([0-9]+)?/c([0-9\.-]+?))/" [^>]+>?',
+            'filterName': 3,
+            'filterId': 3,
+            'filterFile': 1,
+            'filePrefix': "",
+            'fileSuffix': "",
+            'fileCumulative': False,
+            'filePrefixBase': True,
+            'type': "entry"
+        },
+        {
+            'label': "Chapter",
+            'preFilter': 'prew_page',
+            'filter': '[^]?<option value="([^"]+)"[^>]*>(\d+?)</option>',
+            'filterName': 2,
+            'filterFile': 1,
+            'filterId': 2,
+            'filePrefix': "",
+            'fileSuffix': "",
+            'fileCumulative': False,
+            'filePrefixBase': True,
+            'type': "entry"
+        },
+        {
+            'label': "Page",
+            'preFilter': '',
+            'filter': '<img src="([^"]+)" id="image" alt=',
+            'filterName': 1,
+            'filterFile': 1,
+            'filePrefix': "",
+            'fileSuffix': "",
+            'fileCumulative': False,
+            'filePrefixBase': False,
+            'type': "part"
+        },
+        {
+            'label': "Image",
+            'filePrefix': "",
+            'fileSuffix': "",
+            'fileCumulative': False,
+            'filePrefixBase': False,
+            'type': "image"
+        }
+    ]
 }

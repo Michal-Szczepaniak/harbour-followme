@@ -17,7 +17,7 @@ ApplicationWindow
 	property bool pluginsReady
 
 	property alias downloadQueue: dQueue
-	property alias coverPage: cp
+    property alias coverPage: coverPage
 	property var mainList
 
 	signal pluginsCompleted ()
@@ -122,8 +122,8 @@ ApplicationWindow
 		MainPage {}
 	}
 
-	cover: CoverPage {
-        id: cp
+    cover: CoverPage {
+        id: coverPage
 	}
 }
 

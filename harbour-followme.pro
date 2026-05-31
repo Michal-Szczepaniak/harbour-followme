@@ -19,41 +19,39 @@ DIST_FILES += qml/harbour-followme.qml \
     translations/*.ts \
     harbour-followme.png \
     harbour-followme.desktop \
-        qml/resources/css/followme.css \
-        qml/resources/js/followme.js \
-        qml/components/Ajax.qml \
-        qml/components/DownloadQueue.qml \
-        qml/components/Fetch.qml \
-        qml/components/FollowMeImage.qml \
-        qml/components/FollowMeItem.qml \
-        qml/components/PyCleanEntry.qml \
-        qml/components/PyCreateDataPath.qml \
-        qml/components/PyDataPath.qml \
-        qml/components/PyDownloadFile.qml \
-        qml/components/PyListEntries.qml \
-        qml/components/PyLoadEntry.qml \
-        qml/components/PySaveEntry.qml \
-        qml/components/PySizeEntry.qml \
-        qml/components/QueueProgress.qml \
-        qml/cover/CoverPage.qml \
-        qml/pages/AddEntryPage.qml \
-        qml/pages/EntryPage.qml \
-        qml/pages/ListPage.qml \
-        qml/pages/MainPage.qml \
-        qml/pages/ProviderPage.qml \
-        qml/pages/SearchDialog.qml \
-        qml/pages/SearchPage.qml \
-        qml/pages/SettingsDialog.qml \
-        qml/pages/SliderDialog.qml \
-        qml/python/followme.py \
-        qml/images/starGold.svg \
-        qml/images/starGrey.svg \
-        qml/scripts/download.js \
-        qml/plugins/MangaTown/.FollowMe \
-        harbour-followme.svg \
-        rpm/harbour-followme.spec
-
-
+    qml/resources/css/followme.css \
+    qml/resources/js/followme.js \
+    qml/components/Ajax.qml \
+    qml/components/DownloadQueue.qml \
+    qml/components/Fetch.qml \
+    qml/components/FollowMeImage.qml \
+    qml/components/FollowMeItem.qml \
+    qml/components/PyCleanEntry.qml \
+    qml/components/PyCreateDataPath.qml \
+    qml/components/PyDataPath.qml \
+    qml/components/PyDownloadFile.qml \
+    qml/components/PyListEntries.qml \
+    qml/components/PyLoadEntry.qml \
+    qml/components/PySaveEntry.qml \
+    qml/components/PySizeEntry.qml \
+    qml/components/QueueProgress.qml \
+    qml/cover/CoverPage.qml \
+    qml/pages/AddEntryPage.qml \
+    qml/pages/EntryPage.qml \
+    qml/pages/ListPage.qml \
+    qml/pages/MainPage.qml \
+    qml/pages/ProviderPage.qml \
+    qml/pages/SearchDialog.qml \
+    qml/pages/SearchPage.qml \
+    qml/pages/SettingsDialog.qml \
+    qml/pages/SliderDialog.qml \
+    qml/python/followme.py \
+    qml/images/starGold.svg \
+    qml/images/starGrey.svg \
+    qml/scripts/download.js \
+    qml/plugins/MangaTown/.FollowMe \
+    harbour-followme.svg \
+    rpm/harbour-followme.spec
 
 CONFIG += sailfishapp_i18n
 
@@ -70,6 +68,8 @@ DISTFILES += \
     qml/components/FollowMeImageH.qml \
     qml/pages/Localgridview.qml \
     qml/plugins/MangaKatana/.FollowMe \
+    qml/plugins/MangaTown/.FollowMe \
+    qml/plugins/DynastyScans/.FollowMe \
     qml/python/imageprovider.py \
     qml/python/parse.py \
     qml/python/rarfile.py \

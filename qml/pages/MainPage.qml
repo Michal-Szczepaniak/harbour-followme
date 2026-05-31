@@ -13,7 +13,8 @@ Page {
     property var entryItems: ({})
     property bool horizon: horizontal.value
     property bool sizeauto: sizecalc.value
-ConfigurationGroup {
+
+    ConfigurationGroup {
         id: mainConfig
         path: "/apps/harbour-followme"
     }
@@ -113,11 +114,7 @@ function horizonref(){
             MenuItem {
                 text: qsTr("Search");
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("SearchDialog.qml"), {
-                        title: qsTr("Search"),
-                        searchLabel: qsTr("Name"),
-                        searchString: ""
-                    });
+                    pageStack.push(Qt.resolvedUrl("SearchPage.qml"));
                 }
             }
             MenuItem {

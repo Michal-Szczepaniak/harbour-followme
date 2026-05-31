@@ -5,7 +5,6 @@ import "../components"
 Page {
     id: entryPage
 
-    // this is set from the MainPage, it has a locator, items
     property var parentEntry
     property bool horizon
     property var file: parentEntry.file
@@ -25,12 +24,13 @@ Page {
     signal markLast ()
     signal calcCurrentCompletion ()
 
-    allowedOrientations: Orientation.All //Portrait | Orientation.Landscape
+    allowedOrientations: Orientation.All
 
-onOrientationChanged: {
+    onOrientationChanged: {
          entryView.interactive = true;
     }
-SilicaFlickable {
+
+    SilicaFlickable {
         id: picFlick
         contentWidth: width
         contentHeight: height
@@ -52,9 +52,7 @@ SilicaFlickable {
             NumberAnimation { target: picFlick; property: "contentY"; to: 0; duration: 100 }
         }
 
-
-
-                        PullDownMenu {
+        PullDownMenu {
             visible: prev >= 0 || next > 0
             MenuItem {
                 visible: parentEntry.items.length > 1
@@ -97,11 +95,9 @@ SilicaFlickable {
             }
         }
 
-
-
         SilicaGridView {
-        id: entryView
-        anchors.fill: parent
+            id: entryView
+            anchors.fill: parent
             cellWidth:  parent.width
             cellHeight: parent.height
             snapMode: GridView.SnapOneRow
@@ -109,127 +105,123 @@ SilicaFlickable {
             flickableDirection: Flickable.HorizontalAndVerticalFlick
             highlightRangeMode: GridView.StrictlyEnforceRange
 
-PinchArea {
-            width: Math.max(picFlick.contentWidth, picFlick.width)
-            height: Math.max(picFlick.contentHeight, picFlick.height)
-            property real initialWidth
-            property real initialHeight
+            PinchArea {
+                width: Math.max(picFlick.contentWidth, picFlick.width)
+                height: Math.max(picFlick.contentHeight, picFlick.height)
+                property real initialWidth
+                property real initialHeight
 
-            onPinchStarted: {
-                initialWidth = picFlick.contentWidth
-                initialHeight = picFlick.contentHeight
-            }
+                onPinchStarted: {
+                    initialWidth = picFlick.contentWidth
+                    initialHeight = picFlick.contentHeight
+                }
 
-            onPinchUpdated: {
-                picFlick.contentX += pinch.previousCenter.x - pinch.center.x
-                picFlick.contentY += pinch.previousCenter.y - pinch.center.y
+                onPinchUpdated: {
+                    picFlick.contentX += pinch.previousCenter.x - pinch.center.x
+                    picFlick.contentY += pinch.previousCenter.y - pinch.center.y
 
-                var newWidth = Math.max(initialWidth * pinch.scale, picFlick.width)
-                var newHeight = Math.max(initialHeight * pinch.scale, picFlick.height)
+                    var newWidth = Math.max(initialWidth * pinch.scale, picFlick.width)
+                    var newHeight = Math.max(initialHeight * pinch.scale, picFlick.height)
 
-                newWidth = Math.min(newWidth, picFlick.width * 3)
-                newHeight = Math.min(newHeight, picFlick.height * 3)
+                    newWidth = Math.min(newWidth, picFlick.width * 3)
+                    newHeight = Math.min(newHeight, picFlick.height * 3)
 
-                picFlick.resizeContent(newWidth, newHeight, pinch.center)
+                    picFlick.resizeContent(newWidth, newHeight, pinch.center)
                     if(picFlick.contentWidth > picFlick.width || picFlick.contentHeight > picFlick.height){
                         entryView.interactive = false
                     } else {
                         entryView.interactive = true
                     }
+                }
+
+                onPinchFinished: {
+                    picFlick.returnToBounds()
+                }
+
+                MouseArea {
+                    id: doubleTapArea
+                    width: Math.max(picFlick.contentWidth, picFlick.width)
+                    height: Math.max(picFlick.contentHeight, picFlick.height)
+                    onPressAndHold: showoverlay = !showoverlay
+                    onDoubleClicked: function() {
+                        if (picFlick.contentWidth <= picFlick.width) {
+                            entryView.interactive = false
+                            picFlick.resizeContent(picFlick.width * 2.5, picFlick.height * 2.5, Qt.point(doubleTapArea.mouseX, doubleTapArea.mouseY))
+
+                            picFlick.returnToBounds()
+                        }
+                        else {
+                                entryView.interactive = true
+                            picFlick._fit()
+                        }
+                    }
+                }
             }
 
-            onPinchFinished: {
-                picFlick.returnToBounds()
-            }
+            model: partModel
 
-            // Doubletap to zoom and doubletap to return to images
-            MouseArea {
-                id: doubleTapArea
-                width: Math.max(picFlick.contentWidth, picFlick.width)
-                height: Math.max(picFlick.contentHeight, picFlick.height)
-onPressAndHold: showoverlay = !showoverlay
-                onDoubleClicked: function() {
-                    if (picFlick.contentWidth <= picFlick.width) {
-                        entryView.interactive = false
-                        picFlick.resizeContent(picFlick.width * 2.5, picFlick.height * 2.5, Qt.point(doubleTapArea.mouseX, doubleTapArea.mouseY))
+            delegate: FollowMeImageH {
+                id: followMeImage
 
-                        picFlick.returnToBounds()
+                property var part: partModel[index]
+
+                width: picFlick.contentWidth
+                height: picFlick.contentHeight
+                smooth: !(picFlick.movingVertically || picFlick.movingHorizontally)
+                parentLocator: chapter.locator
+                partIndex: index
+                partId: part.id
+                file: part.file
+                absoluteFile: part.absoluteFile != undefined ? app.dataPath + part.absoluteFile : ''
+
+                signal refreshImage()
+                signal refreshImageFilename()
+                signal imageSaved(bool success, var entry)
+
+                onRefreshImageFilename: {
+                    console.log("refreshing image filename...");
+                    app.downloadQueue.immediate({
+                        locator: parentLocator.concat([{id: part.id, file: part.file, label: part.label}]),
+                        entry: entryPage.chapter,
+                        pageIndex: partIndex,
+                        saveHandler: imageSaved
+                    });
+                }
+
+                onRefreshImage: {
+                    console.log("refreshing image (ie: re-download " + entryPage.chapter.items[partIndex]['remoteFile'] + ")...");
+                    app.downloadQueue.immediate({
+                        locator: parentLocator.concat([{id: part.id, file: part.file, label: part.label},{}]),
+                        chapter: entryPage.chapter,
+                        remoteFile: entryPage.chapter.items[partIndex]['remoteFile'],
+                        pageIndex: partIndex,
+                        saveHandler: imageSaved
+                    }, function (){
+                        followMeImage.imageSource = '';
+                    });
+                }
+
+                onImageSaved: {
+                    if (success && entryPage.chapter.items[followMeImage.partIndex].absoluteFile != undefined && entryPage.chapter.items[followMeImage.partIndex].absoluteFile != '') {
+                        console.log("image was saved properly, now it's time to set the imageSource");
+                        followMeImage.imageSource = app.dataPath + entryPage.chapter.items[followMeImage.partIndex].absoluteFile;
+                        console.log(followMeImage.imageSource );
+                    }
+                }
+
+                onImageError: {
+                    if (entryPage.chapter.items[partIndex]['remoteFile'] != undefined) {
+                        refreshImage();
                     }
                     else {
-                            entryView.interactive = true
-                        picFlick._fit()
+                        refreshImageFilename();
                     }
                 }
+
             }
         }
+    }
 
-        model: partModel
-//onCurrentIndexChanged: picFlick._fit()
-        delegate: FollowMeImageH {
-            id: followMeImage
-
-            property var part: partModel[index]
-
-            width: picFlick.contentWidth
-            height: picFlick.contentHeight
-            smooth: !(picFlick.movingVertically || picFlick.movingHorizontally)
-            parentLocator: chapter.locator
-            partIndex: index
-            partId: part.id
-            file: part.file
-            absoluteFile: part.absoluteFile != undefined ? app.dataPath + part.absoluteFile : ''
-
-            signal refreshImage()
-            signal refreshImageFilename()
-            signal imageSaved(bool success, var entry)
-
-            onRefreshImageFilename: {
-                console.log("refreshing image filename...");
-                app.downloadQueue.immediate({
-                    locator: parentLocator.concat([{id: part.id, file: part.file, label: part.label}]),
-                    entry: entryPage.chapter,
-                    pageIndex: partIndex,
-                    saveHandler: imageSaved
-                });
-            }
-
-            onRefreshImage: {
-                console.log("refreshing image (ie: re-download " + entryPage.chapter.items[partIndex]['remoteFile'] + ")...");
-                app.downloadQueue.immediate({
-                    locator: parentLocator.concat([{id: part.id, file: part.file, label: part.label},{}]),
-                    chapter: entryPage.chapter,
-                    remoteFile: entryPage.chapter.items[partIndex]['remoteFile'],
-                    pageIndex: partIndex,
-                    saveHandler: imageSaved
-                }, function (){
-                    //console.log('immediate download has been queued, clearing the imageSource', followMeImage.imageSource);
-                    followMeImage.imageSource = '';
-                });
-            }
-
-            onImageSaved: {
-                if (success && entryPage.chapter.items[followMeImage.partIndex].absoluteFile != undefined && entryPage.chapter.items[followMeImage.partIndex].absoluteFile != '') {
-                    console.log("image was saved properly, now it's time to set the imageSource");
-                    followMeImage.imageSource = app.dataPath + entryPage.chapter.items[followMeImage.partIndex].absoluteFile;
-                    console.log(followMeImage.imageSource );
-                }
-            }
-
-            onImageError: {
-            //	console.log("image has error, redownloading it...");
-                if (entryPage.chapter.items[partIndex]['remoteFile'] != undefined) {
-                    refreshImage();
-                }
-                else {
-                    refreshImageFilename();
-                }
-            }
-
-        }
-        }
-
-
-}
     PySaveEntry {
         id: saveChapter
         base: app.dataPath
@@ -302,40 +294,34 @@ onPressAndHold: showoverlay = !showoverlay
         markLast();
         entryView.model = partModel;
         if (parentEntry.currentPage != undefined) {
-console.log(parentEntry.currentPage)
+        console.log(parentEntry.currentPage)
             for(var i = 0;i<parentEntry.currentPage; i++){
                 entryView.moveCurrentIndexRight();
             }
-        //	entryView.positionViewAtIndex(parentEntry.currentPage, GridView.Visible);
-
         }
 
-        // mark it as read
         console.log("saving to chapter: " + entryPage.parentEntry.currentIndex);
         markRead(false);
 
-        // fix the cover
         app.coverPage.primaryText = parentEntry.label;
         app.coverPage.secondaryText = parentEntry.locator[0].label;
         app.coverPage.chapterText = 'Chapter: ' + (parentEntry.items[parentEntry.currentIndex].label != undefined ? parentEntry.items[parentEntry.currentIndex].label : parentEntry.items[parentEntry.currentIndex].id);
     }
 
     onMarkRead: {
-        // no need to save if already read
         if (chapter.read != undefined && chapter.read && !force) {
             return ;
         }
-        // mark chapter read
+
         chapter.read = true;
         saveChapter.activate();
     }
 
     onMarkLast: {
-        // no need to save parentEntry if this was the last one
         if (parentEntry.last != undefined && parentEntry.last == parentEntry.items[parentEntry.currentIndex].id) {
             return ;
         }
-        // save last entry
+
         parentEntry.last = parentEntry.items[parentEntry.currentIndex].id;
         saveEntry.activate();
         console.log('trying to signal entry update in main: ' + parentEntry.last);
@@ -344,27 +330,18 @@ console.log(parentEntry.currentPage)
 
     onCalcCurrentCompletion: {
         if (parentEntry.items.length > 0) {
-        /*	if (entryView.count <= 1 || entryView.indexAt(0, entryView.contentY + entryView.height) == entryView.count - 1) {
-                if (parentEntry.items.length > 0) {
-                    parentEntry.currentPage = parentEntry.items[parentEntry.items.length - 1].id;
-                }
-                parentEntry.currentCompletion = 1;
+            var currentPartIndex = entryView.indexAt(entryView.contentX, 0);
+
+            if (currentPartIndex != undefined && parentEntry.items[currentPartIndex] != undefined && parentEntry.items.length != 0) {
+                parentEntry.currentPage = entryView.currentIndex//  entryView.indexAt(entryView.contentX, 0);//parentEntry.items[currentPartIndex].id;
+
+                parentEntry.currentCompletion = parentEntry.currentPage / parentEntry.items.length;
+
+                var currentPartIndex = entryView.indexAt(entryView.contentX, 0);
+                console.log(parentEntry.file, file, chapter.file)
                 saveEntry.activate();
             }
-            else {*/
-                var currentPartIndex = entryView.indexAt(entryView.contentX, 0);
-
-                if (currentPartIndex != undefined && parentEntry.items[currentPartIndex] != undefined && parentEntry.items.length != 0) {
-                    parentEntry.currentPage = entryView.currentIndex//  entryView.indexAt(entryView.contentX, 0);//parentEntry.items[currentPartIndex].id;
-
-                    parentEntry.currentCompletion = parentEntry.currentPage / parentEntry.items.length;
-
-                    var currentPartIndex = entryView.indexAt(entryView.contentX, 0);
-console.log(parentEntry.file, file, chapter.file)
-                    saveEntry.activate();
-                }
-            }
-    //	}
+        }
     }
 
     onGotoSibling: {
@@ -384,10 +361,12 @@ console.log(parentEntry.file, file, chapter.file)
 
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            // when going back, store the currentCompletion
             calcCurrentCompletion();
             app.moveSort(parentEntry, -1);
+        } else if (status === PageStatus.Active) {
+            app.coverPage.primaryText = parentEntry.label;
+            app.coverPage.secondaryText = parentEntry.locator[0].label;
+            app.coverPage.chapterText = 'Chapter: ' + (parentEntry.items[parentEntry.currentIndex].label != undefined ? parentEntry.items[parentEntry.currentIndex].label : parentEntry.items[parentEntry.currentIndex].id);
         }
     }
-
 }

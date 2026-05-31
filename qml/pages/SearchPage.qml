@@ -4,7 +4,7 @@ import "../components"
 
 Page {
     id: searchPage
-	allowedOrientations: Orientation.Portrait | Orientation.Landscape
+    allowedOrientations: Orientation.All
 
 	property string searchName
 	property var searchModel: []
@@ -15,25 +15,37 @@ Page {
 
 	SilicaListView {
         id: searchList
-		property bool loading: true
+        property bool loading: false
 
-		anchors {
-			top: parent.top
-			bottom: queueProgress.top
-		}
-		width: parent.width
+        anchors.fill: parent
 
 		header: Column {
 			width: parent.width
-			height: pageHeader.height + Theme.paddingLarge
+            height: pageHeader.height + searchField.height + Theme.paddingLarge
+
 			PageHeader {
                 id: pageHeader
-                title: qsTr("Search for ") + searchName
+                title: searchName !== '' ? qsTr("Search for ") + searchName : qsTr("Search")
 			}
+
+            TextField {
+                id: searchField
+                label: qsTr("Name")
+                placeholderText: label
+                focus: true
+                anchors {
+                    leftMargin: Theme.horizontalPageMargin
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                Keys.onReturnPressed: {
+                    searchName = searchField.text
+                    activate()
+                }
+            }
 
 			BusyIndicator {
 				anchors.horizontalCenter: parent.horizontalCenter
-				running: true
+                running: true
 				size: BusyIndicatorSize.Large
 				visible: searchList.loading
 			}
@@ -66,7 +78,7 @@ Page {
 			}
 
 			PySaveEntry {
-				id: "saveEntry"
+                id: saveEntry
 				base: app.dataPath
 			}
 
@@ -91,7 +103,7 @@ Page {
 			}
 		}
 
-	        VerticalScrollDecorator {}
+        VerticalScrollDecorator {}
 	}
 
 	QueueProgress {
@@ -104,11 +116,12 @@ Page {
 			bottomMargin: Theme.paddingSmall
 			topMargin: Theme.paddingSmall
 		}
-		width: parent.width
+        width: parent.width
 	}
 
-	onActivate: {
-		// for each plugin issue an immediate search
+    onActivate: {
+        searchList.loading = true;
+
 		for (var i in app.plugins) {
 			app.downloadQueue.immediate({
 				locator: [{id: i, label: app.plugins[i].label}],
@@ -150,12 +163,6 @@ Page {
 				return ( sa < sb ? -1 : (sa > sb ? 1 : 0));
 			});
 			todo = 0;
-		}
-	}
-
-	onStatusChanged: {
-		if (status == PageStatus.Active) {
-			activate();
 		}
 	}
 }

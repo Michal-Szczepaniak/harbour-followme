@@ -5,48 +5,51 @@ import "../components"
 CoverBackground {
 	property string primaryText
 	property string secondaryText
-	property string chapterText
-
-	CoverPlaceholder {
-        icon.source: "../images/harbour-followme.png"
-	}
+    property string chapterText
 
 	Column {
 		width: parent.width
-		anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
+
+        Image {
+            id: image
+
+            source: "../images/harbour-followme.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Item {
+            width: 1
+            height: Theme.paddingLarge
+        }
 
 		Label {
 			text: primaryText
 			color: Theme.primaryColor
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 			truncationMode: TruncationMode.Fade
-			width: parent.width
-			anchors {
-				leftMargin: Theme.paddingMedium
-				topMargin: Theme.paddingSmall
-			}
+            width: parent.width - Theme.paddingLarge*2
+            anchors.horizontalCenter: parent.horizontalCenter
 		}
 
 		Label {
 			text: secondaryText
 			color: Theme.secondaryColor
+            horizontalAlignment: Text.AlignHCenter
 			font.pixelSize: Theme.fontSizeSmall
 			truncationMode: TruncationMode.Fade
-			width: parent.width
-			anchors {
-				leftMargin: Theme.paddingMedium
-				topMargin: Theme.paddingSmall
-			}
+            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
 		}
 
 		Label {
 			text: chapterText
 			color: Theme.primaryColor
+            horizontalAlignment: Text.AlignHCenter
 			truncationMode: TruncationMode.Fade
-			width: parent.width
-			anchors {
-				leftMargin: Theme.paddingMedium
-				topMargin: Theme.paddingSmall
-			}
+            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
 		}
 
 	}

@@ -51,33 +51,33 @@
 <context>
     <name>EntryPageH</name>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="61"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="59"/>
         <source>Jump To</source>
         <translation type="unfinished">Spring naar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="64"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="62"/>
         <source>Jump to chapter</source>
         <translation type="unfinished">Spring naar hoofdstuk</translation>
     </message>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="66"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="64"/>
         <source>chapter</source>
         <translation type="unfinished">hoofdstuk</translation>
     </message>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="77"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="75"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="82"/>
-        <location filename="../qml/pages/EntryPageH.qml" line="95"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="80"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="93"/>
         <source>Next</source>
         <translation type="unfinished">Volgende</translation>
     </message>
     <message>
-        <location filename="../qml/pages/EntryPageH.qml" line="87"/>
+        <location filename="../qml/pages/EntryPageH.qml" line="85"/>
         <source>Previous</source>
         <translation type="unfinished">Vorige</translation>
     </message>
@@ -93,7 +93,7 @@
 <context>
     <name>FollowMeImageH</name>
     <message>
-        <location filename="../qml/components/FollowMeImageH.qml" line="51"/>
+        <location filename="../qml/components/FollowMeImageH.qml" line="41"/>
         <source>Chapter</source>
         <translation type="unfinished">Hoofdstuk</translation>
     </message>
@@ -124,73 +124,67 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="66"/>
+        <location filename="../qml/pages/MainPage.qml" line="67"/>
         <source>FollowMe</source>
         <translation>VolgMij</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="91"/>
+        <location filename="../qml/pages/MainPage.qml" line="92"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="106"/>
+        <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Stop downloading</source>
         <translation>Stop met downloaden</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="110"/>
+        <location filename="../qml/pages/MainPage.qml" line="111"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="114"/>
-        <location filename="../qml/pages/MainPage.qml" line="117"/>
+        <location filename="../qml/pages/MainPage.qml" line="115"/>
         <source>Search</source>
         <translation>Zoeken</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="118"/>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="124"/>
+        <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Local cbz/cbr file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="271"/>
+        <location filename="../qml/pages/MainPage.qml" line="268"/>
         <source>Check updates</source>
         <translation>Updaten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="302"/>
+        <location filename="../qml/pages/MainPage.qml" line="299"/>
         <source>Download some chapters</source>
         <translation>Download enkele hoofdstukken</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="314"/>
+        <location filename="../qml/pages/MainPage.qml" line="311"/>
         <source>Download until chapter</source>
         <translation>Download tot hoofdstuk</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="316"/>
+        <location filename="../qml/pages/MainPage.qml" line="313"/>
         <source>chapter</source>
         <translation>hoofdstuk</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="336"/>
+        <location filename="../qml/pages/MainPage.qml" line="333"/>
         <source>Cleanup read chapters</source>
         <translation>Verwijder gelezen hoofdstukken</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="363"/>
+        <location filename="../qml/pages/MainPage.qml" line="360"/>
         <source>Stop following</source>
         <translation>Stop met volgen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="726"/>
+        <location filename="../qml/pages/MainPage.qml" line="723"/>
         <source>Select CBZ/CBR file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -204,20 +198,21 @@
     </message>
 </context>
 <context>
-    <name>SearchDialog</name>
-    <message>
-        <location filename="../qml/pages/SearchDialog.qml" line="19"/>
-        <location filename="../qml/pages/SearchDialog.qml" line="25"/>
-        <source>Search</source>
-        <translation>Zoeken</translation>
-    </message>
-</context>
-<context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="31"/>
+        <location filename="../qml/pages/SearchPage.qml" line="28"/>
         <source>Search for </source>
         <translation>Zoek naar </translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="28"/>
+        <source>Search</source>
+        <translation type="unfinished">Zoeken</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="33"/>
+        <source>Name</source>
+        <translation type="unfinished">Naam</translation>
     </message>
 </context>
 <context>
@@ -233,17 +228,17 @@
         <translation>Dit data pad zal gebruikt worden om de paginas alsook de gegevens van de gevolgde dingen op te slaan. Hou er rekening mee dat als je het data pad wijzigt na gebruik van de applicatie, dat je zelf de gegevens zal moeten verplaatsen.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="43"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="52"/>
         <source>Data path</source>
         <translation>Data pad</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="50"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="63"/>
         <source>Horizontal viewing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="60"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="73"/>
         <source>Calculate download size</source>
         <translation type="unfinished"></translation>
     </message>

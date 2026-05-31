@@ -1,10 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-        GridItem {
+GridItem {
     id: listItem
-    //    anchors.fill: parent
-
 
     property int partIndex
     property string partId
@@ -17,53 +15,40 @@ import Sailfish.Silica 1.0
     property alias imageSource: imageFile.source
     property bool ready: imageFile.status === Image.Ready
 
-
-
-
-
     Image {
         id: imageFile
         source: absoluteFile
-       // asynchronous: true
         fillMode: Image.PreserveAspectFit
-            anchors.fill: parent
-
+        anchors.fill: parent
 
         Component.onCompleted: {
-
             if (imageFile.status === Image.Error || absoluteFile == '') {
-                // fetch online
                 console.log("error in image " + absoluteFile);
                 imageError(listItem.parentLocator, listItem.partIndex, listItem.partId);
             }
 
         }
 
-Label {
-        id: chapterno
-        visible: showoverlay && horizon
-        anchors.fill: parent
-        color: Theme.highlightColor
-        opacity: 0.9
+        Label {
+            id: chapterno
+            visible: showoverlay && horizon
+            anchors.fill: parent
+            color: Theme.highlightColor
+            opacity: 0.9
             style: Text.Outline
             font.bold: true
-        horizontalAlignment: Text.AlignHCenter
-        text: parentEntry.label + ": " + qsTr("Chapter") + " " + (chapter != undefined && chapter.label != undefined ? chapter.label + ' (' +( partIndex+1) + '/' + (partModel.length ) + ')' : ( parentEntry.items[parentEntry.currentIndex].label != undefined ? parentEntry.items[parentEntry.currentIndex].label  : parentEntry.items[parentEntry.currentIndex].id ) )
+            horizontalAlignment: Text.AlignHCenter
+            text: parentEntry.label + ": " + qsTr("Chapter") + " " + (chapter != undefined && chapter.label != undefined ? chapter.label + ' (' +( partIndex+1) + '/' + (partModel.length ) + ')' : ( parentEntry.items[parentEntry.currentIndex].label != undefined ? parentEntry.items[parentEntry.currentIndex].label  : parentEntry.items[parentEntry.currentIndex].id ) )
 
         }
-    //}
     }
 
-
     BusyIndicator {
-        width: parent.width
         id: busyFile
         running: true
-        size: BusyIndicatorSize.Small
+        size: BusyIndicatorSize.Medium
         visible: !ready
-        anchors.verticalCenter: parent.verticalCenter
-//	}
-
-}
+        anchors.centerIn: parent
+    }
 }
 

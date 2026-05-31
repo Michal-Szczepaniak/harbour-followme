@@ -30,19 +30,32 @@ Dialog {
         }
 
         Label {
-            wrapMode: Text.Wrap
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
             text: qsTr("This data path will be used to store the images as well as the tracking data of all the followed entries. Keep in mind that if you change the data path after using the application, you will have to move the data manually.")
-            anchors.leftMargin: Theme.horizontalPageMargin
-            anchors.rightMargin: Theme.horizontalPageMargin
+            anchors {
+                left: parent.left
+                right: parent.right
+                leftMargin: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
+            }
+        }
+
+        Item {
+            width: 1
+            height: Theme.paddingLarge
         }
 
         TextField {
             id: dataPathField
             width: parent.width
             label: qsTr("Data path")
-            anchors.leftMargin: Theme.horizontalPageMargin
-            anchors.rightMargin: Theme.horizontalPageMargin
+            anchors {
+                left: parent.left
+                right: parent.right
+                leftMargin: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
+            }
         }
 
         TextSwitch{
